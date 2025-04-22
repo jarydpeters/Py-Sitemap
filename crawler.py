@@ -1,77 +1,75 @@
 #!/usr/bin/env python3
 
 """
-Website Crawler & Visualizer
+Website Crawler Tool
 
-# Example usage:
-# Crawl a website and generate a sitemap graph:
-#   python crawler.py https://example.com
+Usage Examples:
+1. Crawl a site and store the results:
+   python crawler.py --crawl https://example.com
 
-# Display the graph from a previous run (no crawling):
-#   python crawler.py --display
+2. Visualize from a stored graph:
+   python crawler.py --map
 
-# Dependencies:
-# To run this script, you'll need to install the following Python libraries:
-# 1. requests: For making HTTP requests.
-#    Command: pip install requests
-# 2. beautifulsoup4: For parsing HTML content.
-#    Command: pip install beautifulsoup4
-# 3. lxml: For an alternative and efficient HTML parser.
-#    Command: pip install lxml
-# 4. networkx: For managing and visualizing the website graph.
-#    Command: pip install networkx
-# 5. matplotlib: For visualizing the website structure as a graph.
-#    Command: pip install matplotlib
-# 6. scipy: Required for graph layout calculations in networkx
-#    Command: pip install scipy
+3. Export to Excel from a stored graph:
+   python crawler.py --excel
+
+4. Do everything:
+   python crawler.py --crawl https://example.com --map --excel
+
+Dependencies:
+1. requests: For HTTP requests.      pip install requests
+2. beautifulsoup4: For HTML parsing. pip install beautifulsoup4
+3. lxml: For efficient HTML parsing. pip install lxml
+4. networkx: For graph handling.     pip install networkx
+5. matplotlib: For plotting graphs.  pip install matplotlib
+6. pandas: For Excel export.         pip install pandas
+7. openpyxl: Excel file writer.      pip install openpyxl
 """
 
 import argparse
 import os
 import pickle
-import re
-from collections import deque, defaultdict
+import random
+from collections import deque
 from urllib.parse import urljoin, urlparse
 
-import matplotlib.pyplot as plt
-import networkx as nx
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
 
 GRAPH_FILENAME = "sitemap_graph.pkl"
 ERROR_LOG = "404_errors.txt"
+EXCEL_FILE = "sitemap_export.xlsx"
 
+IGNORED_EXTENSIONS = ('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp')
 
 def is_internal_link(link, base_url):
     return urlparse(link).netloc in ("", urlparse(base_url).netloc)
-
 
 def extract_links(html_content, base_url):
     soup = BeautifulSoup(html_content, "lxml")
     links = set()
     for tag in soup.find_all("a", href=True):
         href = tag['href']
-        full_url = urljoin(base_url, href)
-        full_url = full_url.split("#")[0].rstrip("/")
+        full_url = urljoin(base_url, href).split("#")[0].rstrip("/")
+        if full_url.lower().endswith(IGNORED_EXTENSIONS):
+            continue
         links.add(full_url)
     return links
-
 
 def crawl(start_url):
     graph = nx.DiGraph()
     visited = set()
     queue = deque([(start_url, [start_url])])
     error_404s = []
-    url_depths = {start_url: 0}
 
     while queue:
         current_url, path = queue.popleft()
-        current_depth = len(path) - 1
-        print(f"Depth: {current_depth}, Queue: {len(queue)}, Crawling: {current_url}")
-
+        print(f"Queue: {len(queue)} | Crawling: {current_url}")
         if current_url in visited:
             continue
-
         visited.add(current_url)
 
         try:
@@ -86,23 +84,16 @@ def crawl(start_url):
 
         page_content = response.text
         links = extract_links(page_content, start_url)
-
         for link in links:
-            # Skip links between blog posts to avoid crawling "Related Posts" shown on each blog,
-            # which leads to redundant traversal of unrelated blogs and depth deflation.
             if "/blog/" in current_url and "/blog/" in link:
                 continue
-
             if is_internal_link(link, start_url) and link not in visited:
                 graph.add_edge(current_url, link)
                 queue.append((link, path + [link]))
-                url_depths[link] = current_depth + 1
 
-    # Save graph
     with open(GRAPH_FILENAME, "wb") as f:
         pickle.dump(graph, f)
 
-    # Save 404 errors
     if error_404s:
         with open(ERROR_LOG, "w", encoding="utf-8") as f:
             for url, path in error_404s:
@@ -110,39 +101,52 @@ def crawl(start_url):
 
     return graph
 
-
 def visualize_graph(graph):
-    plt.figure(figsize=(14, 10))
-    pos = nx.spring_layout(graph, seed=42)
-    nx.draw_networkx_nodes(graph, pos, node_size=5000, node_color="skyblue")
-    nx.draw_networkx_edges(graph, pos, arrows=True)
-    nx.draw_networkx_labels(graph, pos, font_size=8, font_weight='bold', font_color='black')
+    labels = {node: urlparse(node).path or '/' for node in graph.nodes}
+    edge_colors = [random.choice(['#1f78b4', '#33a02c', '#e31a1c', '#ff7f00']) for _ in graph.edges]
 
-    plt.title("Website Sitemap")
-    plt.axis("off")
-    plt.tight_layout()
+    plt.figure(figsize=(100, 75))
+    pos = nx.spring_layout(graph, seed=42, k=10.0, iterations=3000)
+    nx.draw_networkx(graph, pos, labels=labels, with_labels=True,
+                     node_size=150, font_size=8, width=1.0,
+                     edge_color=edge_colors)
+    plt.axis('off')
+    plt.title("Website Structure Graph")
     plt.show()
 
+def write_to_excel(graph):
+    edges = list(graph.edges())
+    data = [{"Source": src, "Target": tgt} for src, tgt in edges]
+    df = pd.DataFrame(data)
+    df.to_excel(EXCEL_FILE, index=False)
+    print(f"Excel file written to {EXCEL_FILE}")
+
+def load_graph():
+    if os.path.exists(GRAPH_FILENAME):
+        with open(GRAPH_FILENAME, "rb") as f:
+            return pickle.load(f)
+    print("No existing graph found. Run --crawl first.")
+    return None
 
 def main():
-    parser = argparse.ArgumentParser(description="Website Crawler and Visualizer")
-    parser.add_argument("start_url", nargs="?", help="The URL to start crawling from.")
-    parser.add_argument("--display", action="store_true", help="Only display the graph without crawling.")
+    parser = argparse.ArgumentParser(description="Website Crawler with Map and Excel Export")
+    parser.add_argument("--crawl", metavar="URL", help="Crawl the given website URL.")
+    parser.add_argument("--map", action="store_true", help="Visualize the graph.")
+    parser.add_argument("--excel", action="store_true", help="Export graph to Excel.")
     args = parser.parse_args()
 
-    if args.display:
-        if os.path.exists(GRAPH_FILENAME):
-            with open(GRAPH_FILENAME, "rb") as f:
-                graph = pickle.load(f)
-            visualize_graph(graph)
-        else:
-            print("No graph file found. Run the crawler first.")
-    elif args.start_url:
-        graph = crawl(args.start_url)
-        visualize_graph(graph)
-    else:
-        parser.print_help()
+    graph = None
 
+    if args.crawl:
+        graph = crawl(args.crawl)
+    elif args.map or args.excel:
+        graph = load_graph()
+
+    if graph:
+        if args.map:
+            visualize_graph(graph)
+        if args.excel:
+            write_to_excel(graph)
 
 if __name__ == "__main__":
     main()
