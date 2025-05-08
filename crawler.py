@@ -30,6 +30,8 @@ import argparse
 import os
 import pickle
 import random
+import sys
+import time
 from collections import deque
 from urllib.parse import urljoin, urlparse
 
@@ -48,26 +50,37 @@ IGNORED_EXTENSIONS = ('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp')
 def is_internal_link(link, base_url):
     return urlparse(link).netloc in ("", urlparse(base_url).netloc)
 
+def normalize_url(url):
+    return url.rstrip("/")
+
 def extract_links(html_content, base_url):
     soup = BeautifulSoup(html_content, "lxml")
     links = set()
     for tag in soup.find_all("a", href=True):
         href = tag['href']
         full_url = urljoin(base_url, href).split("#")[0].rstrip("/")
+
+        # Check for pagination (older posts) links, as seen in your HTML example
+        if 'Older posts' in tag.get_text():
+            links.add(full_url)
+
+        # Exclude ignored file types (e.g., images, etc.)
         if full_url.lower().endswith(IGNORED_EXTENSIONS):
             continue
+
         links.add(full_url)
+
     return links
 
 def crawl(start_url):
     graph = nx.DiGraph()
     visited = set()
-    queue = deque([(start_url, [start_url])])
+    queue = deque([(normalize_url(start_url), [normalize_url(start_url)])])
     error_404s = []
 
     while queue:
         current_url, path = queue.popleft()
-        print(f"Queue: {len(queue)} | Crawling: {current_url}")
+        print(f"Current Queue: {len(queue):04d} | Crawling: {current_url}")
         if current_url in visited:
             continue
         visited.add(current_url)
@@ -84,22 +97,23 @@ def crawl(start_url):
 
         page_content = response.text
         links = extract_links(page_content, start_url)
+
+        is_on_blog_post = (
+            "/blog/" in current_url and
+            "/blog/page/" not in current_url and
+            not current_url.endswith("/blog")
+        )
+
         for link in links:
-            if "/blog/" in current_url and "/blog/" in link:
+            normalized_link = normalize_url(link)
+
+            # Skip blog-to-blog post links inside a blog post (prevent loop)
+            if is_on_blog_post and "/blog/" in normalized_link and "/blog/page/" not in normalized_link:
                 continue
-            if is_internal_link(link, start_url) and link not in visited:
-                graph.add_edge(current_url, link)
-                queue.append((link, path + [link]))
 
-    with open(GRAPH_FILENAME, "wb") as f:
-        pickle.dump(graph, f)
-
-    if error_404s:
-        with open(ERROR_LOG, "w", encoding="utf-8") as f:
-            for url, path in error_404s:
-                f.write(f"404: {url}\nPath: {' -> '.join(path)}\n\n")
-
-    return graph
+            if is_internal_link(normalized_link, start_url) and normalized_link not in visited:
+                graph.add_edge(current_url, normalized_link)
+                queue.append((normalized_link, path + [normalized_link]))
 
 def visualize_graph(graph):
     labels = {node: urlparse(node).path or '/' for node in graph.nodes}
@@ -147,6 +161,10 @@ def main():
             visualize_graph(graph)
         if args.excel:
             write_to_excel(graph)
+
+    print("")             # blank line
+    sys.stdout.flush()    # flush all output
+    input("Press Enter to exit...")  # wait for user to hit Enter
 
 if __name__ == "__main__":
     main()

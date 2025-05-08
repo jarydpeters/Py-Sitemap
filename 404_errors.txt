@@ -1,44 +1,26 @@
-404: https://distek.com/blog/author/benjaminj
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/author/benjaminj
-
-404: https://distek.com/blog/author/bobtdistekcorp-local
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/author/bobtdistekcorp-local
-
-404: https://distek.com/210-part-1
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/210-part-1
-
-404: https://distek.com/distek-u
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/distek-u
+404: https://distek.com/tis-the-season-giving-back
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/giving-back -> https://distek.com/tis-the-season-giving-back
 
 404: https://distek.com/robotics-challenges-part-1
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/first-robotics -> https://distek.com/robotics-challenges-part-1
 
-404: https://distek.com/distek-turns-employees-into-owners
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/employee-stock-ownership-plan -> https://distek.com/distek-turns-employees-into-owners
+404: https://distek.com/210-part-1
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/category/engineering-careers -> https://distek.com/210-part-1
 
-404: https://distek.com/tis-the-season-giving-back
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/giving-back -> https://distek.com/tis-the-season-giving-back
-
-404: https://distek.com/turning-25-the-past
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/plugfest -> https://distek.com/turning-25-the-past
-
-404: https://distek.com/distek-present-2
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/plugfest -> https://distek.com/distek-present-2
-
-404: https://distek.com/distek-present-1
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/plugfest -> https://distek.com/distek-present-1
-
-404: https://distek.com/2018-year-in-review
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/plugfest -> https://distek.com/2018-year-in-review
+404: https://distek.com/distek-u
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/distek-u
 
 404: https://distek.com/software-architecture
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/software-architecture
 
-404: https://distek.com/book-report-fred-factor-mark-sanborn
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/category/book-report -> https://distek.com/book-report-fred-factor-mark-sanborn
+404: https://distek.com/distek-turns-employees-into-owners
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/tag/employee-owner -> https://distek.com/distek-turns-employees-into-owners
 
-404: https://distek.com/contact
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/a-vivid-vision-planning-for-the-future -> https://distek.com/contact
+404: https://distek.com/2018-year-in-review
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/tag/aef -> https://distek.com/2018-year-in-review
+
+404: https://distek.com/the-distek-year-in-review
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/a-vivid-vision-planning-for-the-future -> https://distek.com/the-distek-year-in-review
 
 404: https://distek.com/engineering-the-start-first-lego-league
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/a-vivid-vision-planning-for-the-future -> https://distek.com/engineering-the-start-first-lego-league
@@ -46,33 +28,60 @@ Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/t
 404: https://distek.com/integrated-projects-engineering-overview
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/a-vivid-vision-planning-for-the-future -> https://distek.com/integrated-projects-engineering-overview
 
-404: https://distek.com/the-distek-year-in-review
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/a-vivid-vision-planning-for-the-future -> https://distek.com/the-distek-year-in-review
+404: https://distek.com/contact
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/a-vivid-vision-planning-for-the-future -> https://distek.com/contact
 
-404: https://distek.com/isobus-task-controller-part-3
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/page/2/?s=book+review -> https://distek.com/blog/isobus-task-controller-part-4 -> https://distek.com/isobus-task-controller-part-3
+404: https://distek.com/book-report-fred-factor-mark-sanborn
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/category/book-report -> https://distek.com/book-report-fred-factor-mark-sanborn
 
-404: https://distek.com/isobus-task-controller-part-5
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/page/2/?s=book+review -> https://distek.com/blog/isobus-task-controller-part-4 -> https://distek.com/isobus-task-controller-part-5
+404: https://distek.com/distek-present-2
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/tag/employee-owned -> https://distek.com/distek-present-2
+
+404: https://distek.com/turning-25-the-past
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/tag/employee-owned -> https://distek.com/turning-25-the-past
+
+404: https://distek.com/distek-present-1
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/blog/tag/employee-owned -> https://distek.com/distek-present-1
 
 404: https://distek.com/expo-lp
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2022/08/26/distek-gears-up-for-the-ivt-expo -> https://distek.com/expo-lp
 
+404: https://distek.com/isobus-task-controller-part-5
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/page/2/?s=book+review -> https://distek.com/blog/isobus-task-controller-part-4 -> https://distek.com/isobus-task-controller-part-5
+
+404: https://distek.com/isobus-task-controller-part-3
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/tag/distek-u -> https://distek.com/?s=book+review -> https://distek.com/page/2/?s=book+review -> https://distek.com/blog/isobus-task-controller-part-4 -> https://distek.com/isobus-task-controller-part-3
+
+404: https://distek.com/tag/plugfest
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/season-of-giving-distek-gives-back -> https://distek.com/2024/08/14/habitat-for-humanity-build -> https://distek.com/blog/its-a-great-time-to-be-an-employee-owner -> https://distek.com/2022/04/04/30-years -> https://distek.com/blog/aem-aef-happenings -> https://distek.com/tag/plugfest
+
+404: https://distek.com/covid19
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/season-of-giving-distek-gives-back -> https://distek.com/2024/08/14/habitat-for-humanity-build -> https://distek.com/blog/its-a-great-time-to-be-an-employee-owner -> https://distek.com/2022/04/04/30-years -> https://distek.com/blog/category/working-with-engineers -> https://distek.com/covid19
+
 404: https://distek.com/getting-hil-embedded-systems-software-testing
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2016/01/20/distek-turns-employees-into-owners -> https://distek.com/blog/the-distek-year-in-review -> https://distek.com/getting-hil-embedded-systems-software-testing
 
-404: https://distek.com/tag/plugfest
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2022/04/04/30-years -> https://distek.com/blog/aem-aef-happenings -> https://distek.com/tag/plugfest
+404: https://distek.com/git-part-2
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/page/2 -> https://distek.com/blog/page/3 -> https://distek.com/blog/page/4 -> https://distek.com/blog/page/5 -> https://distek.com/blog/page/6 -> https://distek.com/blog/page/7 -> https://distek.com/blog/page/8 -> https://distek.com/git-part-2
 
-404: https://distek.com/covid19
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2022/04/04/30-years -> https://distek.com/blog/category/working-with-engineers -> https://distek.com/covid19
+404: https://distek.com/git-part-1
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/page/2 -> https://distek.com/blog/page/3 -> https://distek.com/blog/page/4 -> https://distek.com/blog/page/5 -> https://distek.com/blog/page/6 -> https://distek.com/blog/page/7 -> https://distek.com/blog/page/8 -> https://distek.com/blog/page/9 -> https://distek.com/git-part-1
+
+404: https://distek.com/c-tool-chain
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/page/2 -> https://distek.com/blog/page/3 -> https://distek.com/blog/page/4 -> https://distek.com/blog/page/5 -> https://distek.com/blog/page/6 -> https://distek.com/blog/page/7 -> https://distek.com/blog/page/8 -> https://distek.com/blog/page/9 -> https://distek.com/blog/page/10 -> https://distek.com/c-tool-chain
 
 404: https://distek.com/spring-2016-plugfest
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2022/08/26/distek-gears-up-for-the-ivt-expo -> https://distek.com/blog/part-2-distek-at-ni-connect-2023 -> https://distek.com/2023/06/22/part-1-distek-at-ni-connect-2023 -> https://distek.com/blog/merging-iso-designer-part-2 -> https://distek.com/2023/08/02/merging-isodesigner-part-1 -> https://distek.com/2016/07/28/distek-case-study-virtec-isobus-solution -> https://distek.com/blog/spring-isobus-plugfest-2016 -> https://distek.com/spring-2016-plugfest
 
+404: https://distek.com/reflections-fall-plugfest
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2022/08/26/distek-gears-up-for-the-ivt-expo -> https://distek.com/blog/part-2-distek-at-ni-connect-2023 -> https://distek.com/2023/06/22/part-1-distek-at-ni-connect-2023 -> https://distek.com/blog/merging-iso-designer-part-2 -> https://distek.com/2023/08/02/merging-isodesigner-part-1 -> https://distek.com/2016/07/28/distek-case-study-virtec-isobus-solution -> https://distek.com/blog/spring-isobus-plugfest-2016 -> https://distek.com/reflections-fall-plugfest
+
 404: https://distek.com/isobus-spring-2015-plugfest-wrap-up
 Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2022/08/26/distek-gears-up-for-the-ivt-expo -> https://distek.com/blog/part-2-distek-at-ni-connect-2023 -> https://distek.com/2023/06/22/part-1-distek-at-ni-connect-2023 -> https://distek.com/blog/merging-iso-designer-part-2 -> https://distek.com/2023/08/02/merging-isodesigner-part-1 -> https://distek.com/2016/07/28/distek-case-study-virtec-isobus-solution -> https://distek.com/blog/spring-isobus-plugfest-2016 -> https://distek.com/isobus-spring-2015-plugfest-wrap-up
 
-404: https://distek.com/reflections-fall-plugfest
-Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/engaged-verses-involved-distek-u-105-esop-basics -> https://distek.com/2019/10/28/distek-u-4 -> https://distek.com/blog/2022-a-year-in-review -> https://distek.com/2022/08/26/distek-gears-up-for-the-ivt-expo -> https://distek.com/blog/part-2-distek-at-ni-connect-2023 -> https://distek.com/2023/06/22/part-1-distek-at-ni-connect-2023 -> https://distek.com/blog/merging-iso-designer-part-2 -> https://distek.com/2023/08/02/merging-isodesigner-part-1 -> https://distek.com/2016/07/28/distek-case-study-virtec-isobus-solution -> https://distek.com/blog/spring-isobus-plugfest-2016 -> https://distek.com/reflections-fall-plugfest
+404: https://distek.com/autosar-bsw
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/page/2 -> https://distek.com/blog/page/3 -> https://distek.com/blog/page/4 -> https://distek.com/blog/page/5 -> https://distek.com/blog/page/6 -> https://distek.com/blog/page/7 -> https://distek.com/blog/page/8 -> https://distek.com/blog/page/9 -> https://distek.com/blog/page/10 -> https://distek.com/blog/page/11 -> https://distek.com/autosar-bsw
+
+404: https://distek.com/autosar-communication
+Path: https://distek.com -> https://distek.com/blog -> https://distek.com/blog/page/2 -> https://distek.com/blog/page/3 -> https://distek.com/blog/page/4 -> https://distek.com/blog/page/5 -> https://distek.com/blog/page/6 -> https://distek.com/blog/page/7 -> https://distek.com/blog/page/8 -> https://distek.com/blog/page/9 -> https://distek.com/blog/page/10 -> https://distek.com/blog/page/11 -> https://distek.com/autosar-communication
 
