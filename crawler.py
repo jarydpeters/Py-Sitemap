@@ -16,6 +16,9 @@ Usage Examples:
 4. Do everything:
    python crawler.py --crawl https://example.com --map --excel
 
+5. Stop at first 404 error found:
+   python crawler.py --crawl https://example.com --debug-stop-on-404
+
 Dependencies:
 1. requests: For HTTP requests.      pip install requests
 2. beautifulsoup4: For HTML parsing. pip install beautifulsoup4
@@ -31,7 +34,6 @@ import os
 import pickle
 import random
 import sys
-import time
 from collections import deque
 from urllib.parse import urljoin, urlparse
 
@@ -47,32 +49,35 @@ EXCEL_FILE = "sitemap_export.xlsx"
 
 IGNORED_EXTENSIONS = ('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp')
 
+
 def is_internal_link(link, base_url):
     return urlparse(link).netloc in ("", urlparse(base_url).netloc)
+
 
 def normalize_url(url):
     return url.rstrip("/")
 
+
 def extract_links(html_content, base_url):
     soup = BeautifulSoup(html_content, "lxml")
     links = set()
+
     for tag in soup.find_all("a", href=True):
         href = tag['href']
-        full_url = urljoin(base_url, href).split("#")[0].rstrip("/")
+        resolved_url = urljoin(base_url, href).split("#")[0]
 
-        # Check for pagination (older posts) links, as seen in your HTML example
-        if 'Older posts' in tag.get_text():
-            links.add(full_url)
-
-        # Exclude ignored file types (e.g., images, etc.)
-        if full_url.lower().endswith(IGNORED_EXTENSIONS):
+        if resolved_url.lower().endswith(IGNORED_EXTENSIONS):
             continue
 
-        links.add(full_url)
+        if 'Older posts' in tag.get_text():
+            links.add(resolved_url)
+
+        links.add(resolved_url)
 
     return links
 
-def crawl(start_url):
+
+def crawl(start_url, stop_on_first_404=False):
     graph = nx.DiGraph()
     visited = set()
     queue = deque([(normalize_url(start_url), [normalize_url(start_url)])])
@@ -91,6 +96,12 @@ def crawl(start_url):
         except requests.exceptions.HTTPError as e:
             if response.status_code == 404:
                 error_404s.append((current_url, path))
+                print("\n[DEBUG] 404 encountered! Traversal path:")
+                for step in path:
+                    print(f"  -> {step}")
+                if stop_on_first_404:
+                    print(f"\nFinal 404 URL: {current_url}")
+                    return graph
             continue
         except requests.exceptions.RequestException:
             continue
@@ -107,13 +118,27 @@ def crawl(start_url):
         for link in links:
             normalized_link = normalize_url(link)
 
-            # Skip blog-to-blog post links inside a blog post (prevent loop)
             if is_on_blog_post and "/blog/" in normalized_link and "/blog/page/" not in normalized_link:
                 continue
 
             if is_internal_link(normalized_link, start_url) and normalized_link not in visited:
                 graph.add_edge(current_url, normalized_link)
                 queue.append((normalized_link, path + [normalized_link]))
+
+    # Optionally save 404 errors
+    if error_404s:
+        with open(ERROR_LOG, "w") as f:
+            for url, path in error_404s:
+                f.write(f"404: {url}\nPath: {' -> '.join(path)}\n\n")
+        print(f"[INFO] Logged {len(error_404s)} 404s to {ERROR_LOG}")
+
+    # Save crawl graph
+    with open(GRAPH_FILENAME, "wb") as f:
+        pickle.dump(graph, f)
+        print(f"[INFO] Crawl graph saved to {GRAPH_FILENAME}")
+
+    return graph
+
 
 def visualize_graph(graph):
     labels = {node: urlparse(node).path or '/' for node in graph.nodes}
@@ -128,12 +153,14 @@ def visualize_graph(graph):
     plt.title("Website Structure Graph")
     plt.show()
 
+
 def write_to_excel(graph):
     edges = list(graph.edges())
     data = [{"Source": src, "Target": tgt} for src, tgt in edges]
     df = pd.DataFrame(data)
     df.to_excel(EXCEL_FILE, index=False)
     print(f"Excel file written to {EXCEL_FILE}")
+
 
 def load_graph():
     if os.path.exists(GRAPH_FILENAME):
@@ -142,17 +169,20 @@ def load_graph():
     print("No existing graph found. Run --crawl first.")
     return None
 
+
 def main():
     parser = argparse.ArgumentParser(description="Website Crawler with Map and Excel Export")
     parser.add_argument("--crawl", metavar="URL", help="Crawl the given website URL.")
     parser.add_argument("--map", action="store_true", help="Visualize the graph.")
     parser.add_argument("--excel", action="store_true", help="Export graph to Excel.")
+    parser.add_argument("--debug-stop-on-404", action="store_true",
+                        help="Stop crawl on first 404 and output the path.")
     args = parser.parse_args()
 
     graph = None
 
     if args.crawl:
-        graph = crawl(args.crawl)
+        graph = crawl(args.crawl, stop_on_first_404=args.debug_stop_on_404)
     elif args.map or args.excel:
         graph = load_graph()
 
@@ -162,9 +192,10 @@ def main():
         if args.excel:
             write_to_excel(graph)
 
-    print("")             # blank line
-    sys.stdout.flush()    # flush all output
-    input("Press Enter to exit...")  # wait for user to hit Enter
+    print("")
+    sys.stdout.flush()
+    input("Press Enter to exit...")
+
 
 if __name__ == "__main__":
     main()
