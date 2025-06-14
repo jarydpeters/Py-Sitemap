@@ -3,6 +3,8 @@ This project was created to serve two purposes:
 -Create a sitemap of a chosen URL and all of its subpages and output to excel and .pkl file
 -Detect 404 links within a URL and all of its subpages and record which page the crawler was on when it attempted to visit the 404 link (for easier tracing and fixing of 404's)
 
+It is very similar in use to [CPP_Website_Crawler](https://github.com/jarydpeters/CPP-Website-Crawler), although with some key differences. While this version is in Python and is meant to plot a site's map and detect 404 links, [CPP_Website_Crawler](https://github.com/jarydpeters/CPP-Website-Crawler) is written in C++ and is meant to detect specific phrases on a website's pages.
+
 **Use cases include:**
 
 -Crawl a site and store the results:  
